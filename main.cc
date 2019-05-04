@@ -117,34 +117,33 @@ int main(int argc, char** argv){
 	    cout<<min_name<<" "<<min_size<<endl;
 	    out_list[i].diff_degree-=1;
 	    in_list[min_index].diff_degree-=1;
+            //add flow for edge on the path
+	    std::vector<std::vector<Edge *>> avail_paths = path->find_paths(min_name,out_list[i].name);
+	    path->debug();
+	    if(path->paths.at(0).size()==0)
+	    {
+		cout<<"This is not the strong connected graph."<<endl;
+		return 0;
+	    }
+	    else
+	    {
+		for(int x=0;x<path->paths.at(0).size();x++)
+		{
+		    string edge_h=path->paths.at(0).at(x)->head->name;//get edge head
+		    string edge_t=path->paths.at(0).at(x)->tail->name;//get edge tail
+		    cout<<edge_h<<"->"<<edge_t<<" ";
+		    Edge *edge=nm->get_edge(edge_h,edge_t);//get edge
+		    int edge_flow=edge->flowval;//get edge flow
+		    cout<<edge_flow<<endl;
+		    nm->setlink(edge_h,edge_t,1,edge_flow+1);//edge flow+1
+		}
+		cout<<endl;
+	    }
 	}
     }
 
-    //find path
-    //Path *path;
-    //path=new Path();
-    //path->append(nm->elist);
-    std::vector<std::vector<Edge *>> avail_paths = path->find_paths(std::string("c"),std::string("b"));
-    path->debug();
-    if(path->paths.at(0).size()==0)
-    {
-        cout<<"This is not the strong connected graph."<<endl;
-	return 0;
-    }
-    else
-    {
-        for(int x=0;x<path->paths.at(0).size();x++)
-        {
-            string edge_h=path->paths.at(0).at(x)->head->name;//get edge head
-	    string edge_t=path->paths.at(0).at(x)->tail->name;//get edge tail
-	    cout<<edge_h<<"->"<<edge_t<<" ";
-	    Edge *edge=nm->get_edge(edge_h,edge_t);//get edge
-	    int edge_flow=edge->flowval;//get edge flow
-	    cout<<edge_flow<<endl;
-	    nm->setlink(edge_h,edge_t,1,edge_flow+1);//edge flow+1
-        }
-	cout<<endl;
-    }
+
+
 
     // using gplot to export a  plot file
     Gplot *gp = new Gplot();
