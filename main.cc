@@ -177,8 +177,20 @@ int main(int argc, char** argv){
     all_edge[3]=all_edge[0];
     all_edge[0]=test;
 */
-
-    
+    bool right=0;
+    int t=10;
+    int re=0;
+    while(!right&&(t--)){
+    right=1;
+    int begin=0;
+		for(int num=1;num<=re;num++){
+		    SIMPLE_EDGE swap;
+		    swap=all_edge[1];
+		    for(int k=1;k<=all_edge.size()-1-1;k++){
+		        all_edge[k]=all_edge[k+1];
+		    }
+		    all_edge[all_edge.size()-1]=swap;
+		}
     for(int i=0;i<all_edge.size(); i++){
         for(int j=i+1;j<all_edge.size(); j++){
 	    if(all_edge[i].tail==all_edge[j].head){
@@ -190,8 +202,28 @@ int main(int argc, char** argv){
 		all_edge[i+1]=swap;
 		break;
 	    }
+	    else if(j==all_edge.size()-1){
+		begin=i+1;
+		right=0;
+		re=i;
+		i=j=all_edge.size();break;//break double loops
+		/*
+		for(int num=1;num<=i;num++){
+		    SIMPLE_EDGE swap;
+		    swap=all_edge[1];
+		    for(int k=1;k<=all_edge.size()-1-1;k++){
+		        all_edge[k]=all_edge[k+1];
+		    }
+		    all_edge[all_edge.size()-1]=swap;
+		}
+		i=0;
+		*/
+	    }
         }
     }
+    }
+
+    cout<<"answer path:"<<endl;
     for(int i=0;i<all_edge.size(); i++){
         cout<<all_edge[i].head<<"->"<<all_edge[i].tail<<endl;
     }

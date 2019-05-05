@@ -11,7 +11,7 @@ all: $(EXEC)
 $(EXEC): %.out: %.cc
 	g++ -o $@ $< -I$(LIBS) -g3 -L. -l$(OBJS) $(CXXFLAGS) -no-pie
 
-plot: plot.dot
+plot: middle.dot
 	dot -Tsvg middle.dot > middle.svg
 
 # reset & clean
