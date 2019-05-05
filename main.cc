@@ -149,7 +149,53 @@ int main(int argc, char** argv){
     Gplot *gp = new Gplot();
     gp->gp_add(nm->elist);
     gp->gp_dump(true);
-    gp->gp_export("plot");
+    gp->gp_export("middle");
+
+    //find path
+    class SIMPLE_EDGE{
+        public:
+            string head;
+	    string tail;
+    };
+    vector<SIMPLE_EDGE> all_edge;
+
+    Edge *tra = nm->elist;
+    while(tra!=NULL){
+	SIMPLE_EDGE one_edge;
+	one_edge.head=tra->head->name;
+	one_edge.tail=tra->tail->name;
+	for (int i=0;i<tra->flowval;i++){
+	    all_edge.push_back(one_edge);
+	}
+        cout<<tra->head->name<<"->"<<tra->tail->name<<":"<<tra->flowval<<endl;
+	tra=tra->next;
+    }
+    cout<<endl;
+/*
+    SIMPLE_EDGE test;
+    test=all_edge[3];
+    all_edge[3]=all_edge[0];
+    all_edge[0]=test;
+*/
+
+    
+    for(int i=0;i<all_edge.size(); i++){
+        for(int j=i+1;j<all_edge.size(); j++){
+	    if(all_edge[i].tail==all_edge[j].head){
+	        SIMPLE_EDGE swap;
+		swap=all_edge[j];
+		for (int k=j;k>=i+1+1;k--){
+		    all_edge[k]=all_edge[k-1];
+		}
+		all_edge[i+1]=swap;
+		break;
+	    }
+        }
+    }
+    for(int i=0;i<all_edge.size(); i++){
+        cout<<all_edge[i].head<<"->"<<all_edge[i].tail<<endl;
+    }
+
 
     return 0;
 }
