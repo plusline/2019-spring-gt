@@ -80,3 +80,11 @@ Or you can just [DOWNLOAD a pre-built VM images](http://gofile.me/39GpL/XU5tznyO
 > [Guide of environment setting](https://hackmd.io/-5WZQC-1QqOeV3KUX65tEw?view) on Windows.
 
 ## TODO - Your descriptions about solutions/algorithms/results
+
+### algorithms
+#### distinguish the vertex from their <strong>more indegree</strong> and <strong>more outdegree</strong>
+
+
+### results
+
+
