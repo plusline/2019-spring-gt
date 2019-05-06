@@ -30,7 +30,7 @@ int main (int argc, char **argv)
 
     vector < DEGREE > all_degree;
     Vertex *start = nm->get_all_nodes ();
-    for (Vertex * x = start; x != NULL; x = x->next)	//count diffence of degree
+    for (Vertex * x = start; x != NULL; x = x->next)	//count in out degree
     {
 	DEGREE temp;
 	temp.vertex = x->name;
@@ -185,13 +185,13 @@ int main (int argc, char **argv)
 
     //find the correct order of walk
     bool right = 0;
-    int t = 10;
+    int t = 1000;
     int re = 0;
-    while (!right && (t--))
+    while (!right && (t--))//if not form the right walk 
     {
 	right = 1;
 	int begin = 0;
-	for (int num = 1; num <= re; num++)
+	for (int num = 1; num <= re; num++)//move the inner cycle to the end
 	{
 	    SIMPLE_EDGE swap;
 	    swap = all_edge[1];
@@ -201,7 +201,7 @@ int main (int argc, char **argv)
 	    }
 	    all_edge[all_edge.size () - 1] = swap;
 	}
-	for (int i = 0; i < all_edge.size (); i++)
+	for (int i = 0; i < all_edge.size (); i++)//try to form the cycle
 	{
 	    for (int j = i + 1; j < all_edge.size (); j++)
 	    {

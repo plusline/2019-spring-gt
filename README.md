@@ -82,9 +82,27 @@ Or you can just [DOWNLOAD a pre-built VM images](http://gofile.me/39GpL/XU5tznyO
 ## TODO - Your descriptions about solutions/algorithms/results
 
 ### algorithms
-#### distinguish the vertex from their <strong>more indegree</strong> and <strong>more outdegree</strong>
+1. distinguish the vertex from their <strong>more indegree</strong> and <strong>more outdegree</strong>
+Using class DEGREE to record the information of indegree and outdegree of each vertex.
+using class BI_DEGREE to record the information of difference of degree, then I devide them into more indegree list(in_list) and more outdegree list(out_list).
 
+2. pair the <strong>more indegree</strong> and <strong>more outdegree</strong>
+Checking whether the summation of indegree minus outdegree in in_list must equal to the summation of outdegree munus indegree in out_list, and pair the vertex in in_list with the one in out_list.
+If the difference of in-out degree is more than one, the vertext need to pair up more than one time. 
+We pair the vertext with greedy algorithm. We choose the vertex in in out_list orderly and find the vertex with the minimum vertex with it, ans so on.
+If match up any vertex, I will add the flow of the minimum path from out_list to in_list. I will print out the result with all the flow in middle.svg.
 
+3. find the correct order of walk(Tt is a big cycle, too)
+Using class SIMPLE_EDGE(one_edge) to record every steps of walk.
+I need to find the right order of every steps of walk which the tail of the previous edge is the head of current edge, all the way to the final edge.
+I use double for loops to find the cycle. If the cycle not use all the edge in one_edge, it find the inner loop. At the next while loop, I will move the wrong loop to the end of the list(one_edge). The process will try the otheer direction of walk.
 ### results
+You need to write the graph in graph.txt.
+We can observe the graph and the flow in middle.svg.
+We can find the answer in answer.txt.
 
+### makefile
+```make``` to compile the main.cc
+```./main.out``` to run the main function
+```make plot``` to plot the middle.svg
 
