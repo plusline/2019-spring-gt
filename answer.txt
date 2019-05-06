@@ -1,0 +1,13 @@
+answer path:
+a->b
+b->c
+c->d
+d->e
+e->f
+f->e
+e->b
+b->c
+c->d
+d->e
+e->c
+c->a
