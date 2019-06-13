@@ -81,6 +81,10 @@ Or you can just [DOWNLOAD a pre-built VM images](http://gofile.me/39GpL/XU5tznyO
 
 ## TODO - Your descriptions about solutions/algorithms/results
 
+###
+problem description
+Given a directed graph graph.txt, the program will find out the path going through all the edges in the graph. 
+
 ### algorithms
 1. distinguish the vertex from their <strong>more indegree</strong> and <strong>more outdegree</strong>
 Using class DEGREE to record the information of indegree and outdegree of each vertex.
@@ -97,11 +101,14 @@ Using class SIMPLE_EDGE(one_edge) to record every steps of walk.
 I need to find the right order of every steps of walk which the tail of the previous edge is the head of current edge, all the way to the final edge.
 I use double for loops to find the cycle. If the cycle not use all the edge in one_edge, it find the inner loop. At the next while loop, I will move the wrong loop to the end of the list(one_edge). The process will try the otheer direction of walk.
 ### results
-You need to write the graph in graph.txt.
+You need to write the graph in graph.txt. Just list all the edge in the graph. 
 
 We can observe the graph and the flow in middle.svg.
 
 We can find the answer in answer.txt.
+
+This algorithm can't garantee to find the shortest path. Because I want this program to run in polynomial time, I use greedy algorithm to find the path which is nearly the shortest path.
+
 
 ### makefile
 ```make``` to compile the main.cc.
